@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python2
 
 import sys
 import os
@@ -35,13 +35,13 @@ try:
     launcher.ensure_mklauncher()
 
     # the point-of-contact for QtQUickVCP
-    launcher.start_process('configserver -n mkwrapper-Demo . ~/projects/Machineface ~/projects/Cetus %s' % args.path)
+    launcher.start_process('configserver -n mkwrapper-Demo .. ~/repos/Cetus %s' % args.path)
 
     # start machinekit
     if not args.lathe:
-        launcher.start_process('machinekit mkwrapper.ini')
+        launcher.start_process('linuxcnc mkwrapper.ini')
     else:
-        launcher.start_process('machinekit lathe.ini')
+        launcher.start_process('linuxcnc lathe.ini')
 
     if args.halscope:
         # load scope only now - because all sigs are now defined:
@@ -56,5 +56,3 @@ try:
 except subprocess.CalledProcessError:
     launcher.end_session()
     sys.exit(1)
-
-sys.exit(0)
